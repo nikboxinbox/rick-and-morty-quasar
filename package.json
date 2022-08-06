@@ -2,7 +2,7 @@
   "name": "quasar-project",
   "version": "0.0.1",
   "description": "A Quasar Project",
-  "productName": "rick-and-morty",
+  "productName": "R&M",
   "author": "nik nik <nikbox88@gmail.com>",
   "private": true,
   "scripts": {

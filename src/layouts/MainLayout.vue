@@ -1,19 +1,18 @@
-<template>
-  <q-layout view="lHh Lpr lFf" color="orange">
-    <q-header>
-      <q-toolbar>
-        <q-btn flat dense round icon="menu" aria-label="Menu" />
+<template lang="pug">
+q-layout 
+    q-header
+      q-toolbar
+        q-btn(flat dense round  aria-label="Menu")
+         q-avatar(size="70px" )
+          img(src="~assets/rick.png" size="xl")
+        
 
-        <q-toolbar-title> Rick and Morty </q-toolbar-title>
+        
 
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
+        q-toolbar-title Rick and Morty 
 
-    <q-page-container>
+    q-page-container
       <router-view />
-    </q-page-container>
-  </q-layout>
 </template>
 
 <script>
