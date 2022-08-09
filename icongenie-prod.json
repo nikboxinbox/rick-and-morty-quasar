@@ -1,8 +1,8 @@
 {
   "params": {
     "skipTrim": true,
-    "icon": "src/assets/cucumber-logo.png",
-    "background": "./src/assets/cucumber-logo.png",
+    "icon": "src/assets/rm-title.png",
+    "background": "./src/assets/rm-title.png",
     "splashscreenIconRatio": "0",
     "padding": [
       0,
