@@ -1,7 +1,9 @@
 <template lang="pug">
 q-page
-  .characters__list {{allCharacters}}
+  .characters__list 
     CharacterList
+  q-page-sticky.pagination-container(position="bottom" :offset="[0, 18]")
+    PaginationComponent
     
       
 </template>
@@ -11,16 +13,18 @@ import { mapActions, mapGetters } from "vuex";
 
 // Components
 import CharacterList from "../components/CharactersList.vue";
+import PaginationComponent from "../components/PaginationComponent.vue";
 
 export default {
   components: {
     CharacterList,
+    PaginationComponent,
   },
   name: "IndexPage",
-  computed: mapGetters(["allCharacters"]),
-  methods: mapActions(["getAllCharacters"]),
-  async mounted() {
-    this.getAllCharacters();
-  },
+  computed: { ...mapGetters(["getCharacters"]) },
 };
 </script>
+<style lang="stylus">
+q-page
+  padding-top 100px
+</style>

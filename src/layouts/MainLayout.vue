@@ -1,15 +1,16 @@
 <template lang="pug">
 q-layout
   q-header.main-layout__header.text-dark
-    q-page-sticky(position="top" expand).bg-accent
+    q-page-sticky(position="top" expand ).bg-accent
       q-toolbar.main-layout__tool-bar
         q-btn(flat dense round  aria-label="Menu")
-          q-avatar(size="70px" )
+          q-avatar(size="50px" )
             img(src="~assets/rick.png" size="xl")
         q-toolbar-title Rick and Morty 
         FiltersComponent
 
   q-page-container
+
     <router-view />
 </template>
 
@@ -39,6 +40,7 @@ export default defineComponent({
 <style lang="stylus">
 .main-layout__tool-bar
   background-color #ff9800
+  height: 60px
 .q-toolbar__title
   font-size: 28px
   color: white

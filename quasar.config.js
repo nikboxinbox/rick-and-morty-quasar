@@ -92,6 +92,8 @@ module.exports = configure(function (ctx) {
     framework: {
       config: {},
 
+      components: ["QPagination"],
+
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
 
