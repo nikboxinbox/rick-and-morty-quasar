@@ -1,6 +1,7 @@
 <template lang="pug">
 q-page
   .characters__list 
+    
     CharacterList
   q-page-sticky.pagination-container(position="bottom" :offset="[0, 18]")
     PaginationComponent
@@ -10,7 +11,6 @@ q-page
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-
 // Components
 import CharacterList from "../components/CharactersList.vue";
 import PaginationComponent from "../components/PaginationComponent.vue";
@@ -21,7 +21,33 @@ export default {
     PaginationComponent,
   },
   name: "IndexPage",
-  computed: { ...mapGetters(["getCharacters"]) },
+  computed: {
+    ...mapGetters([
+      "getCharacters",
+      "getErrorMessageFromApi",
+      "getFilterName",
+      "getStatus",
+    ]),
+  },
+  watch: {
+    getErrorMessageFromApi(val) {
+      if (val === "There is nothing here" && this.getFilterName !== "") {
+        const message = `По вашему запросу с именем: ${this.getFilterName} никого не найдено!`;
+        this.showNotif(message);
+      }
+    },
+  },
+  methods: {
+    showNotif(message) {
+      this.$q.notify({
+        message: message,
+        color: "red",
+        position: "top",
+      });
+    },
+  },
+
+  mounted() {},
 };
 </script>
 <style lang="stylus">
