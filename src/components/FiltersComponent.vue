@@ -2,8 +2,8 @@
 .filter-name.q-pa-md
   q-input(v-model="searchName" ref="inputFilter" @keyup.enter="filtration" filled type="search" placeholder ="Name" color="teal")
     template(v-slot:append)
-      q-icon(name="close" @click="clearSearch").cursor-pointer
       q-icon(name="search" @click="filtration" ).cursor-pointer
+      q-icon(name="close"  v-if="searchName!==''" @click="clearSearch").cursor-pointer
 .filter-status
   div.q-pa-md()
     q-btn-toggle(

@@ -24,8 +24,8 @@
                 v-for="episode in character.episode.slice(0,5)"
                 :key="episode"
                 )
-                a.episode-text-link(:href="episode" ) 
-                  q-btn {{getEpisodeNumber(episode)}}
+                a.episode-text-link()
+                  q-btn(@click.prevent="$router.push({name:'EpisodePage', params:{id: getEpisodeNumber(episode)}})") {{getEpisodeNumber(episode)}}
 
   
         

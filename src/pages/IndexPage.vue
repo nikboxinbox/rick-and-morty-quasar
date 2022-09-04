@@ -1,7 +1,6 @@
 <template lang="pug">
 q-page
   .characters__list 
-    
     CharacterList
   q-page-sticky.pagination-container(position="bottom" :offset="[0, 18]")
     PaginationComponent

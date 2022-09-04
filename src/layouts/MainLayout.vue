@@ -3,7 +3,12 @@ q-layout
   q-header.main-layout__header.text-dark
     q-page-sticky(position="top" expand ).bg-accent
       q-toolbar.main-layout__tool-bar
-        q-btn(flat dense round  aria-label="Menu")
+        q-btn(
+          @click.prevent="$router.push( '/' )"
+
+          flat dense round
+          aria-label="Menu"
+          )
           q-avatar(size="50px" )
             img(src="~assets/rick.png" size="xl")
         q-toolbar-title Rick and Morty 

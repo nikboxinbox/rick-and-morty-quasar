@@ -8,13 +8,13 @@ import { mapActions, mapGetters } from "vuex";
 
 export default defineComponent({
   name: "App",
+
   methods: {
     ...mapActions(["fetchData"]),
   },
   async mounted() {
     this.fetchData();
     // this.$store;
-    // debugger;
   },
 });
 </script>
