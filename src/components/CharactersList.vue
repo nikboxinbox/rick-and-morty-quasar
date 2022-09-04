@@ -10,7 +10,8 @@
         q-avatar(rounded size="180px")
           img(:src="character.image" alt="character.name")
       q-item-section.characters-list__item__section-info
-        a 
+        a(@click.prevent="$router.push({name:'CharacterPage', params:{id: character.id}})") 
+
           h2.item__section-info__name().q-ma-none.cursor-pointer.text-h6 {{character.name}}
         span.item__section-info__status
           p.status-text().text-subtitle2 {{character.status}}
@@ -29,24 +30,20 @@
   
         
     
-  
-
-
-
-
-        
-
-    
 </template>
+
 <script>
-// TODO:
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 export default {
   name: "CharacterList ",
   computed: { ...mapGetters(["getCharacters"]) },
   methods: {
+    ...mapMutations(["setSingleCharacter"]),
     getEpisodeNumber(episodeUrl) {
       return episodeUrl.split("/").slice(-1).join();
+    },
+    goToCharacterPage() {
+      this.setSingleCharacter();
     },
   },
 };
