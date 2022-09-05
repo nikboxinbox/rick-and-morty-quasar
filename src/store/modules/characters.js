@@ -67,33 +67,31 @@ export default {
         // debugger
         const data = await response.json();
         console.log(data);
-        const { characters } = data
-        debugger
-        await dispatch("fetchMultipleCharactersEpisode")
-        debugger
-        const { name, air_date, charactersUrls } = data
-        await commit("setSingleEpisode", { name, air_date, characters })
+        const { name, air_date, characters } = data
+        const charactersEpisode = await dispatch('fetchMultipleCharactersEpisode', characters)
+        await commit("setSingleEpisode", { name, air_date, charactersEpisode })
 
       } catch (e) { console.error(e) }
     },
 
-    // TODO: в fetchMultipleCharactersEpisode получить массив characters:[{id:1,image: .....}] . Как передать в экшн аргумент 
-    async fetchMultipleCharactersEpisode(charactersUrls) {
-
+    // TODO: проверить в компоненте getSingleCharacter.
+    async fetchMultipleCharactersEpisode({ commit }, charactersUrls) {
+      debugger
       try {
         const BASE_URL = "https://rickandmortyapi.com/api";
-        const charactersIds = charactersUrls.map((characterUrl) =>
-          characterUrl.split("/").slice(-1).join())
+        const charactersIds = charactersUrls.map((characterUrl) => {
+          return characterUrl.split("/").slice(-1).join()
+        }).join(',')
         debugger
         const response = await fetch(
-          `${BASE_URL}/character/${[...charactersIds]}`
+          `${BASE_URL}/character/${charactersIds}`
         );
-        // debugger
         const data = await response.json();
-        debugger
-        const { name, air_date, characters } = data
-        await commit("setSingleEpisode", { name, air_date, characters })
-
+        const CharactersImagesIds = data.map((d) => {
+          return { id: d.id, image: d.image }
+        })
+        console.log(data);
+        return CharactersImagesIds
       } catch (e) { console.error(e) }
     },
     updatePage({ commit, dispatch }, page) {
