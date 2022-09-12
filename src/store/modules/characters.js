@@ -14,7 +14,6 @@ export default {
 
   },
   actions: {
-    //TODO: если data.error ==== 'There is nothing here' То запускаем подсказку тултип : Совпадений не найдено , попробуйте изменить запрос
     async fetchData({ commit, getters }) {
       try {
         commit("setApiErrorMessage", null)
@@ -29,7 +28,6 @@ export default {
           `${BASE_URL}/character/?page=${getters.getPage}${NAME_URL}${STATUS_URL}`
         );
         const data = await response.json();
-        // console.log(data);
 
         if (data.error) {
           commit("setApiErrorMessage", data.error)
@@ -51,7 +49,6 @@ export default {
         const response = await fetch(
           `${BASE_URL}/character/${id}`
         );
-        // debugger
         const data = await response.json();
         const { name, species, image, location } = data
         await commit("setSingleCharacter", { name, species, image, location })
@@ -64,7 +61,6 @@ export default {
         const response = await fetch(
           `${BASE_URL}/episode/${id}`
         );
-        // debugger
         const data = await response.json();
         console.log(data);
         const { name, air_date, characters } = data
@@ -76,13 +72,11 @@ export default {
 
     // TODO: проверить в компоненте getSingleCharacter.
     async fetchMultipleCharactersEpisode({ commit }, charactersUrls) {
-      debugger
       try {
         const BASE_URL = "https://rickandmortyapi.com/api";
         const charactersIds = charactersUrls.map((characterUrl) => {
           return characterUrl.split("/").slice(-1).join()
         }).join(',')
-        debugger
         const response = await fetch(
           `${BASE_URL}/character/${charactersIds}`
         );
@@ -156,7 +150,6 @@ export default {
       return state.errorMessageFromApi
     },
     getSingleCharacter(state) {
-      // debugger
       return state.singleCharacter
     },
     getSingleEpisode(state) {

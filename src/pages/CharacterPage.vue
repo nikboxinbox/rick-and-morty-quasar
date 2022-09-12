@@ -5,7 +5,7 @@ q-page(v-if="character").page-character-card
     q-card.character-card
       //- pre {{character}}
       q-card-section(horizontal).character-card__main-section
-        q-img.col-5(:src="character.image")
+        q-img.col-5()
         q-card-section.character-card__section()
           h3.character-card__name().q-pa-none {{character.name}}
           h4.character-card__species {{character.species}}
