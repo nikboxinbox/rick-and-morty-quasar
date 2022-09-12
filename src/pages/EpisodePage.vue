@@ -4,16 +4,23 @@ q-page(v-if="episode").page-episode-card
     //- p ASSSSSSSSSSSSSSSSSs
     q-card.episode-card
       //- pre {{character}}
-      .episode-card__main-section
-        h4.character-card__name().q-pa-none {{episode.name}}
-        h5.character-card__species.q-pa-none Premiere date: {{episode.air_date}}
-        .episode-card__section-list
-          q-list.episode-card__list-images-characters
-            q-item.episode-card__item-image-character(
-              v-for="character in episode.characters"
-              :key="character.id"
-              color="white"
-              ) {{  character}}
+      .episode-card__main-section.q-pt-sm
+        h4.character-card__name() {{episode.name}}
+        h5.character-card__species Premiere date: {{episode.air_date}}
+        .episode-card__section-list(v-if="episode.charactersEpisode").flex
+          .episode-card__item-character(
+            v-for="character in episode.charactersEpisode"
+            :key="character.id"
+            color="white"
+            ).q-ma-xs 
+            img.episode-card__item-character__image(
+              :src="character.image"
+              @click="$router.push({name:'CharacterPage', params:{id: character.id}})"
+              )
+                              
+
+            //- item
+            //-   pre {{episode}}
           //- h4.character-card__location {{character.location.name}}
 
         //- q-img.col-5(:src="character.image")
@@ -86,7 +93,10 @@ export default {
   background #212121
 .episode-card__main-section
   color white
-
+  text-align center
 .episode-card__section
   color white
+ .episode-card__section-list
+  width 100%
+  justify-content center
 </style>

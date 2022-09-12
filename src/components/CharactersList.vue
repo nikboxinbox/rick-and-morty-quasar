@@ -15,7 +15,7 @@
           h2.item__section-info__name().q-ma-none.cursor-pointer.text-h6 {{character.name}}
         span.item__section-info__status
           p.status-text().text-subtitle2 {{character.status}}
-          q-icon.status-icon(name="fiber_manual_record" color="green" size="sm").q-ml-sm
+          q-icon.status-icon(name="fiber_manual_record" :color="character.status === 'Dead'? 'red' : 'green'" size="sm").q-ml-sm
         p.item__section-info__species().text-subtitle2 {{character.species}}
         p.text-subtitle2.flex Episodes:
         .characters-list__item__section-info__episodes
@@ -41,9 +41,6 @@ export default {
     ...mapMutations(["setSingleCharacter"]),
     getEpisodeNumber(episodeUrl) {
       return episodeUrl.split("/").slice(-1).join();
-    },
-    goToCharacterPage() {
-      this.setSingleCharacter();
     },
   },
 };
