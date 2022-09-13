@@ -13,7 +13,7 @@
       )
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data: () => ({
@@ -32,9 +32,10 @@ export default {
       this.filtration();
     },
   },
-
+  computed: { ...mapGetters(["getStatus", "getFilterName"]) },
   methods: {
     ...mapActions(["updateFilters"]),
+
     filtration() {
       this.updateFilters({ status: this.status, searchName: this.searchName });
     },
@@ -45,6 +46,8 @@ export default {
   },
 
   mounted() {
+    this.status = this.getStatus;
+    this.searchName = this.getFilterName;
     this.$refs.inputFilter.$el.focus();
   },
 };

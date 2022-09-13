@@ -1,6 +1,8 @@
 import { store } from "quasar/wrappers";
 import { createStore } from "vuex";
 import axios from "src/boot/axios";
+import VuexPersistence from 'vuex-persist'
+
 
 // Modules
 import characters from "./modules/characters";
@@ -14,12 +16,16 @@ import characters from "./modules/characters";
  * async/await or return a Promise which resolves
  * with the Store instance.
  */
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage
+});
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
       characters,
     },
+    plugins: [vuexLocal.plugin]
 
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only

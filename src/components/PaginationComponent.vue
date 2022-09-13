@@ -33,6 +33,7 @@ export default {
     ...mapActions(["updatePage"]),
   },
   mounted() {
+    this.currentPage = this.getPage;
     // this.$root.$on("PAGE_RESET", () => {
     //   this.currentPage = 1;
     // });
