@@ -1,5 +1,4 @@
 <template lang="pug">
-  
 .characters-list__cont().q-pa-md.text-white
   q-list.characters-list__list(dark bordered separator style="max-width: 80%")
     q-item.characters-list__item(
@@ -27,9 +26,6 @@
                 a.episode-text-link()
                   q-btn(@click.prevent="$router.push({name:'EpisodePage', params:{id: getEpisodeNumber(episode)}})") {{getEpisodeNumber(episode)}}
 
-  
-        
-    
 </template>
 
 <script>

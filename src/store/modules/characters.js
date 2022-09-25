@@ -16,7 +16,6 @@ export default {
     async updateData({ commit, getters }) {
       try {
         commit("setApiErrorMessage", null);
-        // const BASE_URL = "https://rickandmortyapi.com/api";
         const STATUS_URL =
           getters.getStatus == "All" ? "" : `&status=${getters.getStatus}`;
         const NAME_URL =
@@ -44,7 +43,6 @@ export default {
     },
     async updateSingleCharacter({ commit, getters }, id) {
       try {
-        // const BASE_URL = "https://rickandmortyapi.com/api";
         const response = await fetch(`${BASE_URL}/character/${id}`);
         const data = await response.json();
         const { name, species, image, location } = data;
@@ -55,10 +53,8 @@ export default {
     },
     async updateSingleEpisode({ commit, getters, dispatch }, id) {
       try {
-        // const BASE_URL = "https://rickandmortyapi.com/api";
         const response = await fetch(`${BASE_URL}/episode/${id}`);
         const data = await response.json();
-        console.log(data);
         const { name, air_date, characters } = data;
         const charactersEpisode = await dispatch(
           "updateMultipleCharactersEpisode",
@@ -72,18 +68,17 @@ export default {
 
     async updateMultipleCharactersEpisode({ commit }, charactersUrls) {
       try {
-        // const BASE_URL = "https://rickandmortyapi.com/api";
         const charactersIds = charactersUrls
           .map((characterUrl) => {
             return characterUrl.split("/").slice(-1).join();
           })
           .join(",");
+
         const response = await fetch(`${BASE_URL}/character/${charactersIds}`);
         const data = await response.json();
         const CharactersImagesIds = data.map((d) => {
           return { id: d.id, image: d.image };
         });
-        console.log(data);
         return CharactersImagesIds;
       } catch (e) {
         console.error(e);
@@ -95,7 +90,6 @@ export default {
     },
     updateFilters({ commit, dispatch }, filter = {}) {
       commit("setPage", 1);
-      // this.$root.$emit("PAGE_RESET");
       commit("setStatus", filter.status);
       commit("setFilterName", filter.searchName);
       dispatch("updateData");

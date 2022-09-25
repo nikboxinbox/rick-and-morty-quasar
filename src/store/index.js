@@ -1,6 +1,6 @@
 import { store } from "quasar/wrappers";
 import { createStore } from "vuex";
-import axios from "src/boot/axios";
+// import axios from "src/boot/axios";
 import VuexPersistence from "vuex-persist";
 
 // Modules
@@ -25,7 +25,6 @@ export default store(function (/* { ssrContext } */) {
       characters,
     },
     plugins: [vuexLocal.plugin],
-
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only
     // strict: process.env.DEBUGGING,

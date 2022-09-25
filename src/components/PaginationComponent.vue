@@ -14,7 +14,6 @@ import { mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
   name: "PaginationComponent",
-
   data: () => ({
     currentPage: 1,
   }),
@@ -34,9 +33,6 @@ export default {
   },
   mounted() {
     this.currentPage = this.getPage;
-    // this.$root.$on("PAGE_RESET", () => {
-    //   this.currentPage = 1;
-    // });
   },
 };
 </script>

@@ -31,11 +31,22 @@ export default {
     status() {
       this.filtration();
     },
+    getErrorMessageFromApi(val) {
+      // Seach name error message
+      if (val === "There is nothing here" && this.getFilterName !== "") {
+        const message = `По вашему запросу с именем: ${this.getFilterName} никого не найдено!`;
+        this.showNotif(message);
+        this.searchName = "";
+        this.filtration();
+        // this.$root.$emit("CLEAR_SEARCH");
+      }
+    },
   },
-  computed: { ...mapGetters(["getStatus", "getFilterName"]) },
+  computed: {
+    ...mapGetters(["getStatus", "getFilterName", "getErrorMessageFromApi"]),
+  },
   methods: {
     ...mapActions(["updateFilters"]),
-
     filtration() {
       this.updateFilters({ status: this.status, searchName: this.searchName });
     },
@@ -43,12 +54,23 @@ export default {
       this.searchName = "";
       this.filtration();
     },
+    showNotif(message) {
+      debugger;
+      this.$q.notify({
+        message: message,
+        color: "red",
+        position: "top",
+      });
+    },
   },
-
   mounted() {
     this.status = this.getStatus;
     this.searchName = this.getFilterName;
     this.$refs.inputFilter.$el.focus();
+    // this.$root.$on("CLEAR_SEARCH", () => {
+    //   console.log("assssssssssss");
+    //   // this.updateFilters({ status: this.status, searchName: "" });
+    // });
   },
 };
 </script>

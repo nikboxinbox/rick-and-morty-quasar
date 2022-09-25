@@ -13,12 +13,6 @@ q-layout
             flat dense round
 
             )
-        //- q-btn(
-        //-   @click.prevent="goHome"
-        //-   color="white"
-        //-   flat dense round
-        //-   aria-label="Menu"
-        //-   )
         q-avatar(size="60px" )
           img(src="~assets/rick.png" size="xl")
         q-toolbar-title Rick and Morty 
@@ -59,7 +53,6 @@ export default defineComponent({
   height: 60px
 .container-btn
   width 44px
-
 .q-toolbar__title
   font-size: 28px
   color: white
