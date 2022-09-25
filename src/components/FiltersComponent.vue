@@ -54,7 +54,6 @@ export default {
       this.filtration();
     },
     showNotif(message) {
-      debugger;
       this.$q.notify({
         message: message,
         color: "red",
