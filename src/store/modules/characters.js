@@ -1,3 +1,4 @@
+import { BASE_URL } from "src/api";
 export default {
   state: {
     characters: [],
@@ -9,15 +10,13 @@ export default {
     errorMessageFromApi: null,
     singleCharacter: null,
     singleEpisode: null,
-    multipleCharactersImages: null
-
-
+    multipleCharactersImages: null,
   },
   actions: {
     async fetchData({ commit, getters }) {
       try {
-        commit("setApiErrorMessage", null)
-        const BASE_URL = "https://rickandmortyapi.com/api";
+        commit("setApiErrorMessage", null);
+        // const BASE_URL = "https://rickandmortyapi.com/api";
         const STATUS_URL =
           getters.getStatus == "All" ? "" : `&status=${getters.getStatus}`;
         const NAME_URL =
@@ -30,8 +29,8 @@ export default {
         const data = await response.json();
 
         if (data.error) {
-          commit("setApiErrorMessage", data.error)
-          return
+          commit("setApiErrorMessage", data.error);
+          return;
         }
         const characters = data.results;
         const totalPages = data.info.pages;
@@ -39,54 +38,57 @@ export default {
         commit("setTotalPages", totalPages);
         commit("setCharacters", characters);
         commit("setTotalEl", totalEl);
-      } catch (e) { console.error(e) }
-
-
+      } catch (e) {
+        console.error(e);
+      }
     },
     async fetchSingleCharacter({ commit, getters }, id) {
       try {
-        const BASE_URL = "https://rickandmortyapi.com/api";
-        const response = await fetch(
-          `${BASE_URL}/character/${id}`
-        );
+        // const BASE_URL = "https://rickandmortyapi.com/api";
+        const response = await fetch(`${BASE_URL}/character/${id}`);
         const data = await response.json();
-        const { name, species, image, location } = data
-        await commit("setSingleCharacter", { name, species, image, location })
-
-      } catch (e) { console.error(e) }
+        const { name, species, image, location } = data;
+        await commit("setSingleCharacter", { name, species, image, location });
+      } catch (e) {
+        console.error(e);
+      }
     },
     async fetchSingleEpisode({ commit, getters, dispatch }, id) {
       try {
-        const BASE_URL = "https://rickandmortyapi.com/api";
-        const response = await fetch(
-          `${BASE_URL}/episode/${id}`
-        );
+        // const BASE_URL = "https://rickandmortyapi.com/api";
+        const response = await fetch(`${BASE_URL}/episode/${id}`);
         const data = await response.json();
         console.log(data);
-        const { name, air_date, characters } = data
-        const charactersEpisode = await dispatch('fetchMultipleCharactersEpisode', characters)
-        await commit("setSingleEpisode", { name, air_date, charactersEpisode })
-
-      } catch (e) { console.error(e) }
+        const { name, air_date, characters } = data;
+        const charactersEpisode = await dispatch(
+          "fetchMultipleCharactersEpisode",
+          characters
+        );
+        await commit("setSingleEpisode", { name, air_date, charactersEpisode });
+      } catch (e) {
+        console.error(e);
+      }
     },
 
     // TODO: проверить в компоненте getSingleCharacter.
     async fetchMultipleCharactersEpisode({ commit }, charactersUrls) {
       try {
-        const BASE_URL = "https://rickandmortyapi.com/api";
-        const charactersIds = charactersUrls.map((characterUrl) => {
-          return characterUrl.split("/").slice(-1).join()
-        }).join(',')
-        const response = await fetch(
-          `${BASE_URL}/character/${charactersIds}`
-        );
+        // const BASE_URL = "https://rickandmortyapi.com/api";
+        const charactersIds = charactersUrls
+          .map((characterUrl) => {
+            return characterUrl.split("/").slice(-1).join();
+          })
+          .join(",");
+        const response = await fetch(`${BASE_URL}/character/${charactersIds}`);
         const data = await response.json();
         const CharactersImagesIds = data.map((d) => {
-          return { id: d.id, image: d.image }
-        })
+          return { id: d.id, image: d.image };
+        });
         console.log(data);
-        return CharactersImagesIds
-      } catch (e) { console.error(e) }
+        return CharactersImagesIds;
+      } catch (e) {
+        console.error(e);
+      }
     },
     updatePage({ commit, dispatch }, page) {
       commit("setPage", page);
@@ -120,14 +122,14 @@ export default {
       state.totalEl = totalEl;
     },
     setApiErrorMessage(state, errorMessage) {
-      state.errorMessageFromApi = errorMessage
+      state.errorMessageFromApi = errorMessage;
     },
     setSingleCharacter(state, character) {
-      state.singleCharacter = character
+      state.singleCharacter = character;
     },
     setSingleEpisode(state, episode) {
-      state.singleEpisode = episode
-    }
+      state.singleEpisode = episode;
+    },
   },
 
   getters: {
@@ -147,13 +149,13 @@ export default {
       return state.filterName;
     },
     getErrorMessageFromApi(state) {
-      return state.errorMessageFromApi
+      return state.errorMessageFromApi;
     },
     getSingleCharacter(state) {
-      return state.singleCharacter
+      return state.singleCharacter;
     },
     getSingleEpisode(state) {
-      return state.singleEpisode
-    }
+      return state.singleEpisode;
+    },
   },
 };

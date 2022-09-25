@@ -13,14 +13,14 @@ q-layout
             flat dense round
 
             )
-        q-btn(
-          @click.prevent="goHome"
-          color="white"
-          flat dense round
-          aria-label="Menu"
-          )
-          q-avatar(size="60px" )
-            img(src="~assets/rick.png" size="xl")
+        //- q-btn(
+        //-   @click.prevent="goHome"
+        //-   color="white"
+        //-   flat dense round
+        //-   aria-label="Menu"
+        //-   )
+        q-avatar(size="60px" )
+          img(src="~assets/rick.png" size="xl")
         q-toolbar-title Rick and Morty 
         FiltersComponent(v-if="this.$route.path === '/'")
 

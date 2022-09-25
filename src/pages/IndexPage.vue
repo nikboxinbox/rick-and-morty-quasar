@@ -9,7 +9,7 @@ q-page
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 // Components
 import CharacterList from "../components/CharactersList.vue";
 import PaginationComponent from "../components/PaginationComponent.vue";
@@ -30,13 +30,16 @@ export default {
   },
   watch: {
     getErrorMessageFromApi(val) {
+      // Seach name error message
       if (val === "There is nothing here" && this.getFilterName !== "") {
         const message = `По вашему запросу с именем: ${this.getFilterName} никого не найдено!`;
         this.showNotif(message);
+
       }
     },
   },
   methods: {
+    ...mapMutations(["setFilterName"]),
     showNotif(message) {
       this.$q.notify({
         message: message,
