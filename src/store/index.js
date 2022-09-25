@@ -1,8 +1,7 @@
 import { store } from "quasar/wrappers";
 import { createStore } from "vuex";
 import axios from "src/boot/axios";
-import VuexPersistence from 'vuex-persist'
-
+import VuexPersistence from "vuex-persist";
 
 // Modules
 import characters from "./modules/characters";
@@ -17,7 +16,7 @@ import characters from "./modules/characters";
  * with the Store instance.
  */
 const vuexLocal = new VuexPersistence({
-  storage: window.localStorage
+  storage: window.localStorage,
 });
 
 export default store(function (/* { ssrContext } */) {
@@ -25,7 +24,7 @@ export default store(function (/* { ssrContext } */) {
     modules: {
       characters,
     },
-    plugins: [vuexLocal.plugin]
+    plugins: [vuexLocal.plugin],
 
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only
