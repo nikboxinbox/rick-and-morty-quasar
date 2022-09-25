@@ -38,7 +38,6 @@ export default {
         this.showNotif(message);
         this.searchName = "";
         this.filtration();
-        // this.$root.$emit("CLEAR_SEARCH");
       }
     },
   },
@@ -67,10 +66,6 @@ export default {
     this.status = this.getStatus;
     this.searchName = this.getFilterName;
     this.$refs.inputFilter.$el.focus();
-    // this.$root.$on("CLEAR_SEARCH", () => {
-    //   console.log("assssssssssss");
-    //   // this.updateFilters({ status: this.status, searchName: "" });
-    // });
   },
 };
 </script>

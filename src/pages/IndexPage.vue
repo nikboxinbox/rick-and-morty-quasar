@@ -27,29 +27,11 @@ export default {
       "getStatus",
     ]),
   },
-  // watch: {
-  //   getErrorMessageFromApi(val) {
-  //     // Seach name error message
-  //     if (val === "There is nothing here" && this.getFilterName !== "") {
-  //       const message = `По вашему запросу с именем: ${this.getFilterName} никого не найдено!`;
-  //       this.showNotif(message);
-  //       this.$root.$emit("CLEAR_SEARCH");
-  //     }
-  //   },
-  // },
+
   methods: {
     ...mapMutations(["setFilterName"]),
     ...mapActions(["updateFilters"]),
-    // showNotif(message) {
-    //   this.$q.notify({
-    //     message: message,
-    //     color: "red",
-    //     position: "top",
-    //   });
-    // },
   },
-
-  mounted() {},
 };
 </script>
 <style lang="stylus">

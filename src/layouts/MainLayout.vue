@@ -11,8 +11,7 @@ q-layout
             color="white"
             size="lg"
             flat dense round
-
-            )
+          )
         q-avatar(size="60px" )
           img(src="~assets/rick.png" size="xl")
         q-toolbar-title Rick and Morty 
