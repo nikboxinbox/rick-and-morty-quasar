@@ -63,7 +63,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["fetchSingleEpisode"]),
+    ...mapActions(["updateSingleEpisode"]),
     // getCharactersImages(character) {
     //   debugger;
     //   const charactersIds = characters.map((character) => {
@@ -74,7 +74,7 @@ export default {
     // },
   },
   async created() {
-    await this.fetchSingleEpisode(this.$route.params.id);
+    await this.updateSingleEpisode(this.$route.params.id);
     // this.character = this.getSingleCharacter;
   },
 };

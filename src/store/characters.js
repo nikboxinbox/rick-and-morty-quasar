@@ -17,7 +17,7 @@
 //   filterName: "",
 // }
 // actions: {
-//   async fetchData({ commit, getters }) {
+//   async updateData({ commit, getters }) {
 //     const BASE_URL = "https://rickandmortyapi.com/api";
 //     const STATUS_URL =
 //       getters.getStatus == "All" ? "" : `&status=${getters.getStatus}`;
@@ -43,14 +43,14 @@
 //   },
 //   updatePage({ commit, dispatch }, page) {
 //     commit("setPage", page);
-//     dispatch("fetchData");
+//     dispatch("updateData");
 //   },
 //   updateFilters({ commit, dispatch }, filter = {}) {
 //     commit("setPage", 1);
 //     // this.$root.$emit("PAGE_RESET");
 //     commit("setStatus", filter.status);
 //     commit("setFilterName", filter.searchName);
-//     dispatch("fetchData");
+//     dispatch("updateData");
 //   },
 // },
 // mutations: {

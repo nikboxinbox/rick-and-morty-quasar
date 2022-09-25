@@ -10,10 +10,10 @@ export default defineComponent({
   name: "App",
 
   methods: {
-    ...mapActions(["fetchData"]),
+    ...mapActions(["updateData"]),
   },
   async mounted() {
-    this.fetchData();
+    this.updateData();
     // this.$store;
   },
 });

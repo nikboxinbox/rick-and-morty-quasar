@@ -41,13 +41,13 @@ export default defineComponent({
     FiltersComponent,
   },
   methods: {
-    ...mapActions(["fetchData"]),
+    ...mapActions(["updateData"]),
     ...mapMutations(["setPage", "setStatus", "setFilterName"]),
     async goHome() {
       await this.setPage(1);
       await this.setStatus("All");
       await this.setFilterName("");
-      await this.fetchData();
+      await this.updateData();
       this.$router.push("/");
     },
   },

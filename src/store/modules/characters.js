@@ -13,7 +13,7 @@ export default {
     multipleCharactersImages: null,
   },
   actions: {
-    async fetchData({ commit, getters }) {
+    async updateData({ commit, getters }) {
       try {
         commit("setApiErrorMessage", null);
         // const BASE_URL = "https://rickandmortyapi.com/api";
@@ -42,7 +42,7 @@ export default {
         console.error(e);
       }
     },
-    async fetchSingleCharacter({ commit, getters }, id) {
+    async updateSingleCharacter({ commit, getters }, id) {
       try {
         // const BASE_URL = "https://rickandmortyapi.com/api";
         const response = await fetch(`${BASE_URL}/character/${id}`);
@@ -53,7 +53,7 @@ export default {
         console.error(e);
       }
     },
-    async fetchSingleEpisode({ commit, getters, dispatch }, id) {
+    async updateSingleEpisode({ commit, getters, dispatch }, id) {
       try {
         // const BASE_URL = "https://rickandmortyapi.com/api";
         const response = await fetch(`${BASE_URL}/episode/${id}`);
@@ -61,7 +61,7 @@ export default {
         console.log(data);
         const { name, air_date, characters } = data;
         const charactersEpisode = await dispatch(
-          "fetchMultipleCharactersEpisode",
+          "updateMultipleCharactersEpisode",
           characters
         );
         await commit("setSingleEpisode", { name, air_date, charactersEpisode });
@@ -70,8 +70,7 @@ export default {
       }
     },
 
-    // TODO: проверить в компоненте getSingleCharacter.
-    async fetchMultipleCharactersEpisode({ commit }, charactersUrls) {
+    async updateMultipleCharactersEpisode({ commit }, charactersUrls) {
       try {
         // const BASE_URL = "https://rickandmortyapi.com/api";
         const charactersIds = charactersUrls
@@ -92,14 +91,14 @@ export default {
     },
     updatePage({ commit, dispatch }, page) {
       commit("setPage", page);
-      dispatch("fetchData");
+      dispatch("updateData");
     },
     updateFilters({ commit, dispatch }, filter = {}) {
       commit("setPage", 1);
       // this.$root.$emit("PAGE_RESET");
       commit("setStatus", filter.status);
       commit("setFilterName", filter.searchName);
-      dispatch("fetchData");
+      dispatch("updateData");
     },
   },
   mutations: {

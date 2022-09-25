@@ -44,16 +44,16 @@ export default {
       //   return this.getSingleCharacter;
       // }
 
-      // this.fetchSingleCharacter(this.$route.params.id);
+      // this.updateSingleCharacter(this.$route.params.id);
       return this.getSingleCharacter;
     },
   },
 
   methods: {
-    ...mapActions(["fetchSingleCharacter"]),
+    ...mapActions(["updateSingleCharacter"]),
   },
   async created() {
-    await this.fetchSingleCharacter(this.$route.params.id);
+    await this.updateSingleCharacter(this.$route.params.id);
     // this.character = this.getSingleCharacter;
   },
 };
