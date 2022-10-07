@@ -1,9 +1,7 @@
 <template lang="pug">
 q-page(v-if="episode").page-episode-card
   div.container-episode-card
-    //- p ASSSSSSSSSSSSSSSSSs
     q-card.episode-card
-      //- pre {{character}}
       .episode-card__main-section.q-pt-sm
         h4.character-card__name() {{episode.name}}
         h5.character-card__species Premiere date: {{episode.air_date}}
@@ -17,65 +15,28 @@ q-page(v-if="episode").page-episode-card
               :src="character.image"
               @click="$router.push({name:'CharacterPage', params:{id: character.id}})"
               )
-                              
 
-            //- item
-            //-   pre {{episode}}
-          //- h4.character-card__location {{character.location.name}}
-
-        //- q-img.col-5(:src="character.image")
-        //- q-card-section.character-card__section()
-          
-
-      q-separator 
-
- 
-
-
+      q-separator
 </template>
 
 <script>
-// import { onMounted } from "vue";
-// import characters from "src/store/modules/characters";
 import { mapActions, mapGetters } from "vuex";
 
-// Components
-// import CharacterList from "../components/CharactersList.vue";
-// import PaginationComponent from "../components/PaginationComponent.vue";
-
 export default {
-  components: {
-    // CharacterList,
-    // PaginationComponent,
-  },
   name: "CharacterPage",
-  data: () => ({
-    // character: null,
-  }),
+
   computed: {
     ...mapGetters(["getSingleEpisode"]),
     episode() {
       return this.getSingleEpisode;
     },
-    // imagesCharacters(){
-
-    // }
   },
 
   methods: {
     ...mapActions(["updateSingleEpisode"]),
-    // getCharactersImages(character) {
-    //   debugger;
-    //   const charactersIds = characters.map((character) => {
-    //     character.split("/").slice(-1).join();
-    //   });
-    //   debugger;
-    //   fetchMultipleCharactersImages(charactersIds);
-    // },
   },
   async created() {
     await this.updateSingleEpisode(this.$route.params.id);
-    // this.character = this.getSingleCharacter;
   },
 };
 </script>
