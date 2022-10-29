@@ -18,6 +18,7 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "CharacterPage",
+
   computed: {
     ...mapGetters(["getSingleCharacter"]),
     character() {

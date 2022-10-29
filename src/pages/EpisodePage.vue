@@ -9,11 +9,11 @@ q-page(v-if="episode").page-episode-card
           .episode-card__item-character(
             v-for="character in episode.charactersEpisode"
             :key="character.id"
+            @click="$router.push({name:'CharacterPage', params:{id: character.id}})"
             color="white"
-            ).q-ma-xs 
+            ).cursor-pointer.q-ma-xs 
             img.episode-card__item-character__image(
               :src="character.image"
-              @click="$router.push({name:'CharacterPage', params:{id: character.id}})"
               )
 
       q-separator

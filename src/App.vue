@@ -14,7 +14,6 @@ export default defineComponent({
   },
   async mounted() {
     this.updateData();
-    // this.$store;
   },
 });
 </script>
